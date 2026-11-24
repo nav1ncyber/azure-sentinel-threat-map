@@ -1,0 +1,12 @@
+// Illustrative KQL example based on the lab workflow.
+// NOT exported from the user's actual Sentinel workbook.
+// Replace watchlist and field names with the verified workbook configuration.
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+SecurityEvent
+| where EventID == 4625
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
+| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
+| project FailureCount, SourceIP = IpAddress,
+          latitude, longitude, city = cityname,
+          country = countryname,
+          friendly_location = strcat(cityname, " (", countryname, ")");

@@ -1,0 +1,7 @@
+// Query shown in Azure Log Analytics screenshot, November 24, 2026.
+// The screenshot used the portal's "Last 48 hours" time selector.
+
+SecurityEvent
+| where EventID == 4625
+| project TimeGenerated, Computer, Account, IpAddress, LogonType
+| order by TimeGenerated desc

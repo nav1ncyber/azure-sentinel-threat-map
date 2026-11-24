@@ -93,4 +93,4 @@ No authentication secrets, subscription identifiers, or live public IP addresses
 
 ## Acknowledgment
 
-This lab was based on Josh Madakor's [Cyber Home Lab from ZERO and Catch Attackers](https://www.youtube.com/watch?v=g5JL2RIbThM) tutorial. The screenshots and findings above reflect my own Azure environment. The project is an educational demonstration of SIEM workflows, not professional SOC employment experience.
+This lab was based on Josh Madakor's [Cyber Home Lab from ZERO and Catch Attackers](https://www.youtube.com/watch?v=g5JL2RIbThM) tutorial. The reported event counts were observed in my own Azure Workbook; the figure above is a reconstructed summary rather than the original screenshot. This is an educational demonstration of SIEM concepts, not professional SOC employment experience.

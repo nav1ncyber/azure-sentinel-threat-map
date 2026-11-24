@@ -5,9 +5,9 @@
 
 A hands-on cloud security lab built to collect Windows authentication telemetry, investigate failed sign-ins, and visualize source-IP geolocations using Microsoft Azure and an Azure Workbook.
 
-![Reconstructed summary of the geographic event counts observed in Azure](assets/event-distribution.svg)
+![Actual Azure Workbook threat map showing event locations and counts](assets/01-azure-threat-map.webp)
 
-*Figure 1 — Illustrated summary of my November 24, 2026 workbook results. The original Azure screenshots are provided separately for privacy-safe upload.*
+*Figure 1 — My actual Azure Workbook map captured on November 24, 2026. Cropped to remove the Azure account sidebar.*
 
 > **Investigation note:** Recorded failures are security events, not confirmed successful attacks. IP geolocation cannot establish an individual's true physical location.
 
@@ -65,6 +65,10 @@ The original workbook field name **AttackerIp** is retained in the KQL for accur
 
 My captured Azure Workbook map displayed these record counts:
 
+![Azure Workbook with mapped authentication events](assets/01-azure-threat-map.webp)
+
+*The map displays the actual plotted geolocations and record counts from my lab.*
+
 | Approximate city/country | Records displayed |
 |:--|--:|
 | Huế, Vietnam | **437** |
@@ -86,6 +90,10 @@ SecurityEvent
 
 The captured query results displayed **439 rows**. Visible rows showed failed logon attempts involving an administrator account and **LogonType 3**, which identifies a network logon. This corroborates that relevant event data was present in the workspace.
 
+![KQL query filtering Event ID 4625 and Log Analytics results](assets/03-event-4625-query-results.webp)
+
+*Figure 2 — My Event ID 4625 query and sample results with the portal set to Last 48 hours.*
+
 **Important limitation:** The 48-hour event query and the 24-hour map workbook have different time selectors, so they should not be assumed to describe precisely the same set of events merely because both displayed 439 records.
 
 ### Interpretation
@@ -94,7 +102,11 @@ Repeated authentication failures associated with an administrative account are w
 
 ### Environment evidence
 
-My captured VM overview showed CORP-NET-CENTRAL-1, Windows, Canada Central (Zone 1), and **Stopped (deallocated)**. The original screenshot has been prepared separately with account identifiers and the VM public IP removed before publication.
+My captured VM overview showed CORP-NET-CENTRAL-1, Windows, Canada Central (Zone 1), and **Stopped (deallocated)**. The screenshot below has its subscription ID and VM public IP removed for public sharing.
+
+![Azure Windows VM overview with subscription and IP identifiers redacted](assets/02-azure-vm-overview-redacted.webp)
+
+*Figure 3 — Lab VM in Canada Central after deallocation.*
 
 ## Skills demonstrated
 

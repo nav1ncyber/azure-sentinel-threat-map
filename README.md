@@ -117,6 +117,19 @@ My captured VM overview showed CORP-NET-CENTRAL-1, Windows, Canada Central (Zone
 - Visualizing aggregated security data in an Azure Workbook
 - Presenting findings with appropriate limitations and reproducible technical details
 
+## Reproducing the workflow
+
+This repository preserves the query and map configuration, but **does not include live Azure logs or the GeoIP watchlist dataset**. To reproduce the workflow in an authorized environment:
+
+1. Provision an isolated Windows VM and a Log Analytics workspace with Windows security-event collection configured.
+2. Confirm that Windows authentication records are reaching the SecurityEvent table.
+3. Investigate Event ID 4625 using the [failed-logon query](queries/failed-logons-4625.kql).
+4. Configure a compatible geoip Sentinel watchlist with a network key and city/country/latitude/longitude columns. Only use geographic data you are licensed to use.
+5. Run the [workbook query](queries/threat-map.kql), then apply the [map item configuration](workbook/windows-vm-attack-map-item.json) or recreate equivalent workbook settings.
+6. Validate the query output and map markers with your own event data. The exact counts in this write-up are from my original lab, so they will not be reproduced in a new environment.
+
+For safer administration, restrict access to the VM and avoid exposing RDP directly to the internet. Save any evidence needed before deleting resources.
+
 ## Safety, costs, and scope
 
 This was a **controlled educational lab**, not a production monitoring system. An internet-accessible RDP endpoint should never be left open solely to generate authentication attempts. Stopping and deallocating the VM pauses compute charges, but disks, public IP resources, and logging services may still incur costs. Sensitive subscription identifiers, credentials, and live VM public IP details are excluded from published content.

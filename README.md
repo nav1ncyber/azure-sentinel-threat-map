@@ -5,9 +5,9 @@ Navin Jeganathan · Computer Science Co-op · University of Guelph
 
 A hands-on security operations lab that collects Windows authentication events from a cloud-hosted virtual machine, investigates failed sign-ins, and visualizes the geographic distribution of source IP addresses through an Azure workbook.
 
-![Azure workbook map visualizing failed sign-in records, with Huế, Vietnam and Brooklyn, United States represented](assets/threat-map.png)
+![Summary of authentication events associated with approximate IP geolocations](assets/event-distribution.svg)
 
-*Figure 1 — Geographic distribution of failed-logon records in the completed Azure Workbook.*
+*Figure 1 — Visual summary of the event counts shown in my Azure Workbook on November 24, 2026. This graphic is a reconstruction of the observed counts, not an exported workbook screenshot.*
 
 > **Scope:** Personal, controlled training environment. The map represents observed log events—not confirmed intrusions or verified attacker locations.
 
@@ -51,7 +51,7 @@ flowchart LR
 
 ## Findings and validation
 
-The following values appeared in my workbook's map when the screenshot was captured on **November 24, 2026**:
+The following values appeared in my workbook's map in a screenshot from **November 24, 2026**:
 
 | Geolocated city | Events displayed | Interpretation |
 |---|---:|---|
@@ -64,13 +64,11 @@ The following values appeared in my workbook's map when the screenshot was captu
 
 ### Evidence: Azure VM configuration
 
-![Redacted Azure VM overview showing the lab resource group, Canada Central location, and Windows VM details](assets/vm-overview-redacted.png)
-
-*Figure 2 — Azure VM overview. Subscription ID and public IP values are redacted before publication; the VM was in the process of being deallocated when this screenshot was captured.*
+The Azure VM overview showed the `CORP-NET-CENTRAL-1` Windows 11 Pro VM in `RG-SOC-LAB` (Canada Central, Zone 1). The captured VM screenshot showed that deallocation was in progress; subscription identifiers and the public IP were redacted in the local evidence copy. **The original screenshot is not included in this published version.**
 
 ### Evidence: Geographic visualization
 
-The project image at the top of this README is the actual Azure Workbook output from the lab. The left-hand Azure portal navigation and account information were cropped out before publication.
+The visualization above summarizes the counts observed in my actual Azure Workbook screenshot. My screenshot showed two approximate IP-geolocation locations and event counts; it was not uploaded with this initial public repository release.
 
 ## Skills demonstrated
 

@@ -1,12 +1,14 @@
-// Illustrative KQL example based on the lab workflow.
-// NOT exported from the user's actual Sentinel workbook.
-// Replace watchlist and field names with the verified workbook configuration.
+// Exact KQL exported from the user's Azure Workbook (Nov 24, 2026).
+// Workbook visualization used a 24-hour time context, an Azure watchlist
+// named "geoip", and a map rendered from the returned latitude/longitude fields.
+// The original alias "AttackerIp" is retained from the workbook; a failed login
+// event does not by itself confirm a malicious actor or a successful intrusion.
+
 let GeoIPDB_FULL = _GetWatchlist("geoip");
-SecurityEvent
-| where EventID == 4625
+let WindowsEvents = SecurityEvent;
+WindowsEvents | where EventID == 4625
+| order by TimeGenerated desc
 | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
 | summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
-| project FailureCount, SourceIP = IpAddress,
-          latitude, longitude, city = cityname,
-          country = countryname,
-          friendly_location = strcat(cityname, " (", countryname, ")");
+| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname,
+friendly_location = strcat(cityname, " (", countryname, ")");
